@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Road map</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	<style type="text/css">
+		#road {
+			margin: 10px;
+		}
+		#car {
+			background: #fff;
+			position: absolute;
+			left: 25px;
+			top: 25px;
+			width: 15px;
+			height: 10px;
+			transition: all 0.1s ease-in-out;
+		}
+		#car1 {
+			background: #00ff00;
+			position: absolute;
+			left: 5px;
+			top: 25px;
+			width: 15px;
+			height: 10px;
+			transition: all 0.1s ease-in-out;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="road" width="1200" height="600"></canvas>
+	<div id="car"></div>
+	<div id="car1"></div>
+</body>
+</html>
