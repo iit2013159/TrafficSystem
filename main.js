@@ -1,77 +1,80 @@
+
 window.onload = function(){
-	var canvas = document.getElementById("road");
-	var ctx = canvas.getContext("2d");
-	ctx.lineWidth = 50;
-
-	ctx.strokeRect(0, 0, canvas.width , canvas.height);
-	ctx.moveTo(0, 100);
-	ctx.lineTo(canvas.width, 100);
-	ctx.lineTo(canvas.width, 500);
-	ctx.lineTo(0, 500);
-	ctx.stroke();
-
-	ctx.moveTo(200, 0);
-	ctx.lineTo(200, canvas.height);
-	ctx.lineTo(1000, canvas.height);
-	ctx.lineTo(1000, 0);
-	ctx.stroke();
-
-	ctx.strokeRect(400, 200, 400, 200);
-
-	ctx.moveTo(600, 100);
-	ctx.lineTo(600, 200);
-	ctx.stroke();
-
-	ctx.moveTo(600, 400);
-	ctx.lineTo(600, 500);
-	ctx.stroke();
-
-	ctx.moveTo(200, 300);
-	ctx.lineTo(400, 300);
-	ctx.stroke();
-
-	ctx.moveTo(800, 300);
-	ctx.lineTo(1000, 300);
-	ctx.stroke();
-
-	car = document.getElementById("car");
-	var hPos =  parseInt($("#car").css('left'));
-	var vPos = parseInt($('#car').css('top'));
-	var intervalId = setInterval(callMoveCar, 100);
-
-	car1 = document.getElementById("car1");
-	var hPos =  parseInt($("#car1").css('left'));
-	var vPos= parseInt($('#car1').css('top'));
-	var intervalId = setInterval(callMoveCar, 100);
-	async function callMoveCar(){
-		moveCar();
+	makeRoad()
+	var intervalId = setInterval(callMoveCar, 10);
+	 function callMoveCar(){
+		moveCar("car1");
+		moveCar("car");
 	}
-	async function moveCar(){
-	 	if((hPos == 25 || hPos < 225) && vPos == 25){
-	 		hPos+=20;
-	 		car.style.width = 15 + 'px';
-	 		car.style.height = 10 + 'px';
-	 		car.style.left = hPos + 'px';
-	 		
-	 	}else if(hPos == 225 && (vPos == 25 || vPos < 125)){
-	 		vPos+=10;
-	 		car.style.width = 10 + 'px';
-	 		car.style.height = 15 + 'px';
-	 		car.style.top = vPos + 'px';
-	 		
-	 	}else if((hPos == 225 || hPos > 25) && vPos == 125){
-	 		hPos-=20;
-	 		car.style.width = 15 + 'px';
-	 		car.style.height = 10 + 'px';
-	 		car.style.left = hPos + 'px';
-	 		
-	 	}else if(hPos == 25 && (vPos == 125 || vPos > 25)){
-	 		vPos-=10;
-	 		car.style.width = 10 + 'px';
-	 		car.style.height = 15 + 'px';
-	 		car.style.top = vPos + 'px';
-	 		
-	 	}
-	 }
+}
 
+function moveCar(name){
+    car = document.getElementById(name);
+    var hPos =  parseInt($("#"+name).css('left'));
+    var vPos = parseInt($("#"+name).css('top'));
+    if((hPos == 25 || hPos < 225) && vPos == 25){
+        hPos+=1;
+        car.style.width = 15 + 'px';
+        car.style.height = 10 + 'px';
+        car.style.left = hPos + 'px';
+
+    }else if(hPos == 225 && (vPos == 25 || vPos < 125) ){
+        //alert("hy")
+        vPos+=1;
+        car.style.width = 10 + 'px';
+        car.style.height = 15 + 'px';
+        car.style.top = vPos + 'px';
+
+    }else if((hPos == 225 || hPos > 25) && vPos == 125){
+        hPos-=1;
+        car.style.width = 15 + 'px';
+        car.style.height = 10 + 'px';
+        car.style.left = hPos + 'px';
+
+    }else if(hPos == 25 && (vPos >= 125 || vPos > 25)){
+        vPos-=1;
+        car.style.width = 10 + 'px';
+        car.style.height = 15 + 'px';
+        car.style.top = vPos + 'px';
+
+    }
+}
+function makeRoad() {
+    var canvas = document.getElementById("road");
+    var ctx = canvas.getContext("2d");
+    ctx.lineWidth = 100;
+    var x = canvas.width;
+    var y = canvas.height;
+    ctx.strokeRect(0, 0, x ,y );
+    ctx.lineWidth = 50;
+    ctx.moveTo(0, y/4);
+    ctx.lineTo(canvas.width, y/4);
+    ctx.lineTo(canvas.width, 3*y/4);
+    ctx.lineTo(0, 3*y/4);
+    ctx.stroke();
+
+    ctx.moveTo(x/4, 0);
+    ctx.lineTo(x/4, canvas.height);
+    ctx.lineTo(3*x/4, canvas.height);
+    ctx.lineTo(3*x/4, 0);
+    ctx.stroke();
+
+    ctx.strokeRect(3*x/8, 3*y/8, 2*x/8, 2*y/8);
+
+    ctx.moveTo(x/2, y/4);
+    ctx.lineTo(x/2, 3*y/8);
+    ctx.stroke();
+
+    ctx.moveTo(x/2, 5*y/8);
+    ctx.lineTo(x/2, 3*y/4);
+    ctx.stroke();
+
+
+    ctx.moveTo(x/4, y/2);
+    ctx.lineTo(3*x/8, y/2);
+    ctx.stroke();
+
+    ctx.moveTo(5*x/8, y/2);
+    ctx.lineTo(3*x/4, y/2);
+    ctx.stroke();
 }
