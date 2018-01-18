@@ -1,13 +1,27 @@
 
 window.onload = function(){
-	makeRoad()
+	makeRoad();
+	placeCar();
 	var intervalId = setInterval(callMoveCar, 10);
 	 function callMoveCar(){
+
 		moveCar("car1");
 		moveCar("car");
 	}
 }
-
+function placeCar(){
+	carPlace =document.getElementById("carSpace");
+	let div = document.createElement('div');
+	div.id ="car1"
+	div.style.background = "#00ff00";
+	div.style.position= "absolute";
+	div.style.left = " 5px";
+	div.style.top = "25px";
+	div.style.width = " 15px";
+	div.style.height = "10px";
+	div.transition = " all 0.1s ease-in-out";
+	document.body.appendChild(div);
+}
 function moveCar(name){
     car = document.getElementById(name);
     var hPos =  parseInt($("#"+name).css('left'));
