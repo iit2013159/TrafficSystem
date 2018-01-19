@@ -9,6 +9,7 @@ window.onload = function(){
 		moveCar("car");
 	}
 }
+
 function placeCar(){
 	carPlace =document.getElementById("carSpace");
 	let div = document.createElement('div');
@@ -52,6 +53,26 @@ function moveCar(name){
         car.style.top = vPos + 'px';
 
     }
+}
+function onRoad(xCur,yCur){
+    // If they are inside the rectangle or not
+    if(xCur >= 3*x/8 && xCur <= x/4 && yCur >= 3*y/8 && yCur <= y/4){
+        if(xCur <= 3*x/8+ctx.lineWidth || yCur <= 3*y/8+ctx.lineWidth || xCur >= x/4 - ctx.lineWidth || y >= y/4 - ctx.lineWidth){
+            return true;
+        }
+    }
+    if(xCur >= x/4 && xCur <= 3*x/4 && yCur >= y/4 && yCur <= 3*y/4) {
+        if (xCur <= x / 4 + ctx.lineWidth || yCur <= y / 4 + ctx.lineWidth || xCur >= 3 * x / 4 - ctx.lineWidth || y >= 3 * y / 4 - ctx.lineWidth) {
+            return true;
+        }
+    }
+    if(xCur >=0 && xCur <= x && yCur >= 0 && yCur <= y){
+        //Now they are inside the rectangle so whether they are on road or not
+        if(xCur <= ctx.lineWidth || yCur <= ctx.lineWidth || xCur >= x - ctx.lineWidth || y >= y - ctx.lineWidth){
+            return true;
+        }
+    }
+    return false;
 }
 function makeRoad() {
     var canvas = document.getElementById("road");
